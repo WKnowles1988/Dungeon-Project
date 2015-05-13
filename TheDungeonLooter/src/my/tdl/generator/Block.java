@@ -14,10 +14,12 @@ public class Block extends Rectangle{
 	private BlockType blocktype;
 	private BufferedImage block;
 	private boolean isSolid;
+	private boolean isAlive;
 	
 	public Block(Vector2F pos, BlockType blocktype) {
 		setBounds((int)pos.xpos, (int)pos.ypos, BlockSize, BlockSize);
 		this.pos = pos;
+		isAlive = true;
 		this.blocktype = blocktype;
 		init();
 	}
@@ -48,20 +50,21 @@ public class Block extends Rectangle{
 	}
 	
 	public void tick(double deltaTime){
-		setBounds((int)pos.xpos, (int)pos.ypos, BlockSize, BlockSize);
-		
+		if(isAlive){
+			setBounds((int)pos.xpos, (int)pos.ypos, BlockSize, BlockSize);
+		}
 	}
 
 	public void render(Graphics2D g){
-		//g.drawRect((int)pos.getWorldLocation().xpos, (int)pos.getWorldLocation().ypos, BlockSize,BlockSize);
-		g.drawImage(block, (int)pos.getWorldLocation().xpos, (int)pos.getWorldLocation().ypos, BlockSize, BlockSize, null);
-		
+		if(isAlive){
+			//g.drawRect((int)pos.getWorldLocation().xpos, (int)pos.getWorldLocation().ypos, BlockSize,BlockSize);
+			g.drawImage(block, (int)pos.getWorldLocation().xpos, (int)pos.getWorldLocation().ypos, BlockSize, BlockSize, null);
+		}
 		/*
 		if(isSolid){
 			g.drawRect((int)pos.getWorldLocation().xpos, (int)pos.getWorldLocation().ypos, BlockSize, BlockSize);
 		}
 		*/
-	
 	}
 	
 	public enum BlockType {
@@ -77,6 +80,13 @@ public class Block extends Rectangle{
 		return isSolid;
 	}
 	
+	public boolean isAlive() {
+		return isAlive;
+	}
 	
-	
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
+	}
+
+
 }

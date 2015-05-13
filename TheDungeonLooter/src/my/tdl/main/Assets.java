@@ -8,6 +8,7 @@ import my.project.gop.main.loadImageFrom;
 public class Assets {
 
 	SpriteSheet blocks = new SpriteSheet();
+	public static SpriteSheet player = new SpriteSheet();
 	
 	public static BufferedImage stone_1;
 	public static BufferedImage wall_1;
@@ -17,6 +18,8 @@ public class Assets {
 
 	public void init() {
 		blocks.setSpriteSheet(loadImageFrom.LoadImageFrom(Main.class, "spritesheet.png"));
+		player.setSpriteSheet(loadImageFrom.LoadImageFrom(Main.class, "playersheet.png"));
+		
 		stone_1 = blocks.getTile(0, 0, 16, 16);	
 		wall_1 = blocks.getTile(32, 32, 16, 16);	
 		roof_1 = blocks.getTile(32, 0, 16, 16);	
