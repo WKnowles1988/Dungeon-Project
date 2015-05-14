@@ -20,11 +20,11 @@ public class Assets {
 		blocks.setSpriteSheet(loadImageFrom.LoadImageFrom(Main.class, "spritesheet.png"));
 		player.setSpriteSheet(loadImageFrom.LoadImageFrom(Main.class, "playersheet.png"));
 		
-		stone_1 = blocks.getTile(0, 0, 16, 16);	
-		wall_1 = blocks.getTile(32, 32, 16, 16);	
+		stone_1 = blocks.getTile(0, 32, 16, 16);	
+		wall_1 = blocks.getTile(16, 0, 16, 16);	
 		roof_1 = blocks.getTile(32, 0, 16, 16);	
-		glass_1 = blocks.getTile(32, 48, 16, 16);	
-		bfloor_1 = blocks.getTile(16, 32, 16, 16);	
+		glass_1 = blocks.getTile(32, 16, 16, 16);	
+		bfloor_1 = blocks.getTile(64, 16, 16, 16);	
 	}
 	
 	public static BufferedImage getStone_1() {

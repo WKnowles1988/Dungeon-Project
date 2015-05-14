@@ -16,7 +16,7 @@ public class Main {
 	
 	public static void main(String[] args){
 		GameWindow frame = new GameWindow("TheDLooter", width, height);
-		frame.setFullscreen(1);
+		frame.setFullscreen(0);
 		frame.addKeyListener(new Player());
 		frame.add(new GameLoop(width, height));
 		frame.setVisible(true);

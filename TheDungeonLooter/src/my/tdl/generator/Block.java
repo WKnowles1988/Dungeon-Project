@@ -10,7 +10,7 @@ import my.tdl.main.Assets;
 public class Block extends Rectangle{
 	
 	Vector2F pos = new Vector2F();
-	public static int BlockSize = 48;
+	public static int BlockSize = 32;
 	private BlockType blocktype;
 	private BufferedImage block;
 	private boolean isSolid;

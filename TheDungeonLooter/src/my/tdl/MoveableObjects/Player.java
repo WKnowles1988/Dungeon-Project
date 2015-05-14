@@ -16,15 +16,17 @@ import my.tdl.main.Animator;
 import my.tdl.main.Assets;
 import my.tdl.main.Check;
 import my.tdl.main.Main;
+import my.tdl.managers.GUImanager;
+import my.tdl.managers.HUDmanager;
 
 public class Player implements KeyListener {
 	
 	Vector2F pos;
-	private int width = 32; //(int) (Block.BlockSize / 1.14);
-	private int height = 32; //(int)(Block.BlockSize / 1.14);
+	private int width = (int) (Block.BlockSize - 16);
+	private int height = (int)(Block.BlockSize - 16);
 	private int scale = 2;
 	private static boolean up, down, left, right;
-	private float maxSpeed = 3*32F;
+	private float maxSpeed = 3*88F;
 	private float slowdown = 4.093F;
 	private float fixDt = 1f/60F;
 	private float speedUp = 0;
@@ -61,7 +63,12 @@ public class Player implements KeyListener {
 	private ArrayList<BufferedImage> listIdle;
 	Animator ani_idle;
 	
+	private HUDmanager hudm;
+	private GUImanager guim;
+	
 	public Player() {
+		guim = new GUImanager();
+		hudm = new HUDmanager(this);
 		pos = new Vector2F(Main.width / 2 - width -2, Main.height /2 - height /2);
 	}
 	
@@ -501,16 +508,9 @@ public class Player implements KeyListener {
 	}
 	
 	public void render(Graphics2D g) {
-		//g.fillRect((int)pos.xpos, (int)pos.ypos - height / scale, width, height);
+		g.fillRect((int)pos.xpos, (int)pos.ypos - height / scale, width, height);
 		
-		/* "Movie Mode" - Blackened outline to simulate
-		 //cinematic look
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, Main.width, Main.height / 6);
-		g.fillRect(0, 600, Main.width, Main.height / 3);
-		g.setColor(Color.WHITE);
-		g.clipRect(0,0,Main.width, Main.height);
-		*/
+		hudm.render(g);
 		
 		
 		if(animationState == 0){
@@ -570,7 +570,8 @@ public class Player implements KeyListener {
 		}
 		
 		g.drawRect((int)pos.xpos - renderDistancew*32 / 2 + width /2, (int)pos.ypos - renderDistanceh*32 / 2 + height /2, 32 * renderDistancew, 32 * renderDistanceh);
-		
+		guim.render(g);
+		hudm.render(g);
 		
 	}
 
@@ -613,5 +614,22 @@ public class Player implements KeyListener {
 	public void keyTyped(KeyEvent i) {
 
 	}
+	
+	//////////////////////////////////
+	//Getters
+	///////////////////////////////////
+	
+	public Vector2F getpos() {
+		return pos;
+	}
+	
+	public float getMaxSpeed() {
+		return maxSpeed;
+	}
+	
+	public float getSlowdown() {
+		return slowdown;
+	}
+	
 
 }
